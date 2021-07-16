@@ -77,7 +77,7 @@ namespace robosim
             }
             else if (direction == Direction.RIGHT)
             {
-                newIndex = rotateLeft();
+                newIndex = rotateRight();
             }
 
             return newIndex;
@@ -92,7 +92,7 @@ namespace robosim
             }
             else
             {
-                currentDirectionIndex = currentDirectionIndex--;
+                currentDirectionIndex = currentDirectionIndex - 1;
                 currentDirection = directionList[currentDirectionIndex];
             }
 
@@ -108,7 +108,7 @@ namespace robosim
             }
             else
             {
-                currentDirectionIndex = currentDirectionIndex++;
+                currentDirectionIndex = currentDirectionIndex + 1;
                 currentDirection = directionList[currentDirectionIndex];
             }
 
