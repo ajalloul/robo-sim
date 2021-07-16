@@ -54,10 +54,95 @@ namespace robosim
 
         public void MoveRobot()
         {
-            robot.GetX();
-            robot.GetY();
+            int currentX = robot.GetX();
+            int currentY = robot.GetY();
+            int directionIndex = robot.GetDirectionIndex();
+            int newPosition;
 
-            compass.GetDirectionAtIndex(robot.GetDirectionIndex());
+            bool validMove = false;
+
+            string direction = compass.GetDirectionAtIndex(directionIndex);
+
+            if(direction.ToLower() == "north")
+            {
+                newPosition = currentY + 1;
+                validMove = checkBounds(newPosition);
+                if (validMove)
+                {
+                    currentY = newPosition;
+                }
+            }
+            else if(direction.ToLower() == "east")
+            {
+                newPosition = currentX + 1;
+                validMove = checkBounds(newPosition);
+                if (validMove)
+                {
+                    currentX = newPosition;
+                }
+            }
+            else if (direction.ToLower() == "south")
+            {
+                newPosition = currentY - 1;
+                validMove = checkBounds(newPosition);
+                if (validMove)
+                {
+                    currentY = newPosition;
+                }
+            }
+            else if (direction.ToLower() == "west")
+            {
+                newPosition = currentX - 1;
+                validMove = checkBounds(newPosition);
+                if (validMove)
+                {
+                    currentX = newPosition;
+                }
+                
+            }
+
+            if (validMove)
+            {
+                tableTopMatrix[robot.GetX(), robot.GetY()] = false;
+                tableTopMatrix[currentX, currentY] = false;
+                robot.setNewPosition(currentX, currentY, directionIndex);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Move. The robot would be destroyed!");
+            }
+        }
+
+        private bool checkBounds(int newPosition)
+        {
+            if(newPosition < 0 || newPosition > 5)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void TurnRobot(Direction direction)
+        {
+            int currentDirection = robot.GetDirectionIndex();
+
+            int newDirection = compass.rotate(direction, currentDirection);
+
+            compass.CheckSetDirectionString(compass.GetDirectionAtIndex(newDirection));
+
+            robot.setNewPosition(robot.GetX(), robot.GetY(), newDirection);
+        }
+
+        public void RobotReport()
+        {
+            int x = robot.GetX();
+            int y = robot.GetY();
+            int directionIndex = robot.GetDirectionIndex();
+
+            string direction = compass.GetDirectionAtIndex(directionIndex);
+
+            Console.WriteLine("Output: " + x + "," + y + "," + direction);
         }
 
         public bool IsPlaced()

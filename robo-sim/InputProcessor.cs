@@ -48,7 +48,7 @@ namespace robosim
 
             if (xPos == -1)
             {
-                Console.WriteLine("Bad placement on the vertical axis! Please input a value between 0 & 5");
+                Console.WriteLine("Bad placement on the horizontal axis! Please input a value between 0 & 5");
             }
 
             return xPos;
