@@ -11,10 +11,10 @@ namespace robosim
 
         public TableTop()
         {
-            generateTableTop();
+            GenerateTableTop();
         }
 
-        private void generateTableTop()
+        private void GenerateTableTop()
         {
             tableTopMatrix = new bool[6, 6];
 
@@ -38,7 +38,7 @@ namespace robosim
             {
                 int directionIndex = compass.GetDirectionIndex(inputtedDirection);
 
-                robot.setNewPosition(x, y, directionIndex);
+                robot.SetNewPosition(x, y, directionIndex);
 
                 tableTopMatrix[x, y] = true;
 
@@ -64,7 +64,7 @@ namespace robosim
             if(direction.ToLower() == "north")
             {
                 newPosition = currentY + 1;
-                validMove = checkBounds(newPosition);
+                validMove = CheckBounds(newPosition);
                 if (validMove)
                 {
                     currentY = newPosition;
@@ -73,7 +73,7 @@ namespace robosim
             else if(direction.ToLower() == "east")
             {
                 newPosition = currentX + 1;
-                validMove = checkBounds(newPosition);
+                validMove = CheckBounds(newPosition);
                 if (validMove)
                 {
                     currentX = newPosition;
@@ -82,7 +82,7 @@ namespace robosim
             else if (direction.ToLower() == "south")
             {
                 newPosition = currentY - 1;
-                validMove = checkBounds(newPosition);
+                validMove = CheckBounds(newPosition);
                 if (validMove)
                 {
                     currentY = newPosition;
@@ -91,7 +91,7 @@ namespace robosim
             else if (direction.ToLower() == "west")
             {
                 newPosition = currentX - 1;
-                validMove = checkBounds(newPosition);
+                validMove = CheckBounds(newPosition);
                 if (validMove)
                 {
                     currentX = newPosition;
@@ -103,7 +103,7 @@ namespace robosim
             {
                 tableTopMatrix[robot.GetX(), robot.GetY()] = false;
                 tableTopMatrix[currentX, currentY] = false;
-                robot.setNewPosition(currentX, currentY, directionIndex);
+                robot.SetNewPosition(currentX, currentY, directionIndex);
             }
             else
             {
@@ -111,7 +111,7 @@ namespace robosim
             }
         }
 
-        private bool checkBounds(int newPosition)
+        private bool CheckBounds(int newPosition)
         {
             if(newPosition < 0 || newPosition > 5)
             {
@@ -125,11 +125,11 @@ namespace robosim
         {
             int currentDirection = robot.GetDirectionIndex();
 
-            int newDirection = compass.rotate(direction, currentDirection);
+            int newDirection = compass.Rotate(direction, currentDirection);
 
             compass.CheckValidDirectionString(compass.GetDirectionAtIndex(newDirection));
 
-            robot.setNewPosition(robot.GetX(), robot.GetY(), newDirection);
+            robot.SetNewPosition(robot.GetX(), robot.GetY(), newDirection);
         }
 
         public void RobotReport()

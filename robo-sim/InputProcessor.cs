@@ -44,7 +44,7 @@ namespace robosim
             //get x
             int xPos = -1;
 
-            xPos = getIntValueAtPosition(command.ToCharArray(), 6);
+            xPos = GetIntValueAtPosition(command.ToCharArray(), 6);
 
             if (xPos == -1)
             {
@@ -59,7 +59,7 @@ namespace robosim
             //get y
             int yPos = -1;
 
-            yPos = getIntValueAtPosition(command.ToCharArray(), 8);
+            yPos = GetIntValueAtPosition(command.ToCharArray(), 8);
 
             if (yPos == -1)
             {
@@ -74,7 +74,7 @@ namespace robosim
             return command.Substring(10);
         }
 
-        private int getIntValueAtPosition(char[] charArray, int charArrayPosition)
+        private int GetIntValueAtPosition(char[] charArray, int charArrayPosition)
         {
             char yPosAsChar = charArray[charArrayPosition];
 

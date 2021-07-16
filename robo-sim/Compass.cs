@@ -55,7 +55,7 @@ namespace robosim
             return currentDirectionIndex;
         }
 
-        public int rotate(Direction direction, int currentIndex)
+        public int Rotate(Direction direction, int currentIndex)
         {
             int newIndex = -1;
 
@@ -67,17 +67,17 @@ namespace robosim
 
             if(direction == Direction.LEFT)
             {
-                newIndex = rotateLeft(currentIndex);
+                newIndex = RotateLeft(currentIndex);
             }
             else if (direction == Direction.RIGHT)
             {
-                newIndex = rotateRight(currentIndex);
+                newIndex = RotateRight(currentIndex);
             }
 
             return newIndex;
         }
 
-        private int rotateLeft(int currentDirectionIndex)
+        private int RotateLeft(int currentDirectionIndex)
         {
             int returnedDirection;
 
@@ -94,7 +94,7 @@ namespace robosim
             return returnedDirection;
         }
 
-        private int rotateRight(int currentDirectionIndex)
+        private int RotateRight(int currentDirectionIndex)
         {
             int returnedDirection;
 

@@ -15,7 +15,7 @@ namespace robosim
 
         }
 
-        public void setNewPosition(int x, int y, int directionIndex)
+        public void SetNewPosition(int x, int y, int directionIndex)
         {
             xPosition = x;
             yPosition = y;
