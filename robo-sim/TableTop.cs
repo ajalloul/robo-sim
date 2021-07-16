@@ -27,18 +27,16 @@ namespace robosim
             }
         }
 
-        public void PlaceRobot(int x, int y, string inputedDirection)
+        public void PlaceRobot(int x, int y, string inputtedDirection)
         {
             if(x == -1 || y == -1)
             {
-                Console.WriteLine("Please make sure placement values are between 0 & 5");
                 return;
             }
 
-            if (compass.CheckSetDirectionString(inputedDirection))
+            if (compass.CheckValidDirectionString(inputtedDirection))
             {
-                string direction = compass.GetCurrentDirection();
-                int directionIndex = compass.GetCurrentDirectionIndex();
+                int directionIndex = compass.GetDirectionIndex(inputtedDirection);
 
                 robot.setNewPosition(x, y, directionIndex);
 
@@ -129,7 +127,7 @@ namespace robosim
 
             int newDirection = compass.rotate(direction, currentDirection);
 
-            compass.CheckSetDirectionString(compass.GetDirectionAtIndex(newDirection));
+            compass.CheckValidDirectionString(compass.GetDirectionAtIndex(newDirection));
 
             robot.setNewPosition(robot.GetX(), robot.GetY(), newDirection);
         }

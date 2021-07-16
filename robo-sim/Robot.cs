@@ -20,7 +20,6 @@ namespace robosim
             xPosition = x;
             yPosition = y;
             currentDirectionIndex = directionIndex;
-            Console.WriteLine("Robot Move: " + x + "" + y + "" + directionIndex);
         }
 
         public int GetX()

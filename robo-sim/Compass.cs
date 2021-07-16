@@ -6,8 +6,6 @@ namespace robosim
     public class Compass
     {
         private List<string> directionList = new List<string>();
-        private string currentDirection = "";
-        private int currentDirectionIndex = -1;
 
         public Compass()
         {
@@ -34,7 +32,7 @@ namespace robosim
             return extractedDirection;
         }
 
-        public bool CheckSetDirectionString(string cardinalDirection)
+        public bool CheckValidDirectionString(string cardinalDirection)
         {
             string selectedDirection = "";
             selectedDirection = directionList.Find(value => value.Equals(cardinalDirection));
@@ -45,19 +43,15 @@ namespace robosim
             }
             else
             {
-                currentDirection = selectedDirection;
-                currentDirectionIndex = directionList.IndexOf(selectedDirection);
                 return true;
             }
         }
 
-        public string GetCurrentDirection()
+        public int GetDirectionIndex(string cardinalDirection)
         {
-            return currentDirection;
-        }
+            string selectedDirection = directionList.Find(value => value.Equals(cardinalDirection));
+            int currentDirectionIndex = directionList.IndexOf(selectedDirection);
 
-        public int GetCurrentDirectionIndex()
-        {
             return currentDirectionIndex;
         }
 
@@ -68,51 +62,52 @@ namespace robosim
             if (direction == Direction.NULL)
             {
                 Console.WriteLine("Failed to rotate");
-                return currentIndex;
+                return newIndex;
             }
 
             if(direction == Direction.LEFT)
             {
-                newIndex = rotateLeft();
+                newIndex = rotateLeft(currentIndex);
             }
             else if (direction == Direction.RIGHT)
             {
-                newIndex = rotateRight();
+                newIndex = rotateRight(currentIndex);
             }
 
             return newIndex;
         }
 
-        private int rotateLeft()
+        private int rotateLeft(int currentDirectionIndex)
         {
+            int returnedDirection;
+
             if (currentDirectionIndex == 0)
             {
-                currentDirectionIndex = 3;
-                currentDirection = directionList[currentDirectionIndex];
+                returnedDirection = 3;
             }
             else
             {
-                currentDirectionIndex = currentDirectionIndex - 1;
-                currentDirection = directionList[currentDirectionIndex];
+                returnedDirection = currentDirectionIndex - 1;
+                
             }
 
-            return currentDirectionIndex;
+            return returnedDirection;
         }
 
-        private int rotateRight()
+        private int rotateRight(int currentDirectionIndex)
         {
+            int returnedDirection;
+
             if (currentDirectionIndex == 3)
             {
-                currentDirectionIndex = 0;
-                currentDirection = directionList[currentDirectionIndex];
+                returnedDirection = 0;
             }
             else
             {
-                currentDirectionIndex = currentDirectionIndex + 1;
-                currentDirection = directionList[currentDirectionIndex];
+                returnedDirection = currentDirectionIndex + 1;
             }
 
-            return currentDirectionIndex;
+            return returnedDirection;
         }
     }
 }
