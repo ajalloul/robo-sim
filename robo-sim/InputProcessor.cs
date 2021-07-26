@@ -48,7 +48,7 @@ namespace robosim
 
             if (xPos == -1)
             {
-                Console.WriteLine("Bad placement on the horizontal axis! Please input a value between 0 & 5");
+                Console.WriteLine("Bad placement on the horizontal axis! Please input a value between 0 & " + (TableTop.DIMENSION_MAX - 1));
             }
 
             return xPos;
@@ -63,7 +63,7 @@ namespace robosim
 
             if (yPos == -1)
             {
-                Console.WriteLine("Bad placement on the vertical axis! Please input a value between 0 & 5");
+                Console.WriteLine("Bad placement on the vertical axis! Please input a value between 0 & " + (TableTop.DIMENSION_MAX - 1));
             }
 
             return yPos;
@@ -84,7 +84,7 @@ namespace robosim
             {
                 positionValue = int.Parse(yPosAsChar.ToString());
 
-                if (positionValue > 5 || positionValue < 0)
+                if (positionValue > (TableTop.DIMENSION_MAX - 1) || positionValue < 0)
                 {
                     positionValue = -1;
                 }

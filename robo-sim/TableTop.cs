@@ -9,6 +9,8 @@ namespace robosim
         private Robot robot = new Robot();
         private Compass compass = new Compass();
 
+        public static int DIMENSION_MAX = 7;
+
         public TableTop()
         {
             GenerateTableTop();
@@ -16,11 +18,11 @@ namespace robosim
 
         private void GenerateTableTop()
         {
-            tableTopMatrix = new bool[6, 6];
+            tableTopMatrix = new bool[DIMENSION_MAX, DIMENSION_MAX];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < DIMENSION_MAX; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < DIMENSION_MAX; j++)
                 {
                     tableTopMatrix[i, j] = false;
                 }
@@ -113,7 +115,7 @@ namespace robosim
 
         private bool CheckBounds(int newPosition)
         {
-            if(newPosition < 0 || newPosition > 5)
+            if(newPosition < 0 || newPosition > (DIMENSION_MAX - 1))
             {
                 return false;
             }
