@@ -4,7 +4,7 @@ namespace robosim
     public class TableTop
     {
         private bool isPlaced = false;
-        private bool[,] tableTopMatrix;
+        private bool?[,] tableTopMatrix;
 
         private Robot robot = new Robot();
         private Compass compass = new Compass();
@@ -18,7 +18,7 @@ namespace robosim
 
         private void GenerateTableTop()
         {
-            tableTopMatrix = new bool[DIMENSION_MAX, DIMENSION_MAX];
+            tableTopMatrix = new bool?[DIMENSION_MAX, DIMENSION_MAX];
 
             for (int i = 0; i < DIMENSION_MAX; i++)
             {
@@ -50,6 +50,16 @@ namespace robosim
             {
                 Console.WriteLine("Invalid Direction. Please input one of the following NORTH, WEST, EAST, SOUTH");
             }
+        }
+
+        public void Avoid(int x, int y)
+        {
+            if(x == -1 || y == -1)
+            {
+                return;
+            }
+
+            tableTopMatrix[x, y] = null;
         }
 
         public void MoveRobot()
@@ -99,6 +109,12 @@ namespace robosim
                     currentX = newPosition;
                 }
                 
+            }
+
+            if (tableTopMatrix[currentX, currentY] == null)
+            {                
+                Console.WriteLine("Block has an obstruction. Robot can not move!");
+                return;
             }
 
             if (validMove)

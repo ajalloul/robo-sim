@@ -31,6 +31,10 @@ namespace robosim
             {
                 setCommand = Command.REPORT;
             }
+            else if (commandString.Contains("AVOID"))
+            {
+                setCommand = Command.AVOID;
+            }
             else
             {
                 setCommand = Command.NULL;

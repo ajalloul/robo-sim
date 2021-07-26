@@ -12,6 +12,7 @@ namespace robosim
 
     public enum Command
     {
+        AVOID,
         PLACE,
         MOVE,
         LEFT,
@@ -64,6 +65,11 @@ namespace robosim
                 else if (parsedCommand == Command.RIGHT && tableTop.IsPlaced())
                 {
                     tableTop.TurnRobot(Direction.RIGHT);
+                }
+                else if (parsedCommand == Command.AVOID && tableTop.IsPlaced())
+                {
+                    //todo create new method AVOID
+                    tableTop.Avoid(processor.GetX(commandString), processor.GetY(commandString));
                 }
                 else if (!tableTop.IsPlaced())
                 {
