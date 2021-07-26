@@ -75,7 +75,17 @@ namespace robosim
 
         public string GetDirectionString(string command)
         {
-            return command.Substring(10);
+            string direction = "";
+
+            try
+            {
+                direction = command.Substring(10);
+            }catch(Exception e)
+            {
+
+            }
+
+            return direction;
         }
 
         private int GetIntValueAtPosition(char[] charArray, int charArrayPosition)

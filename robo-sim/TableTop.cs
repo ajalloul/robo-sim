@@ -29,12 +29,16 @@ namespace robosim
             }
         }
 
-        public void PlaceRobot(int x, int y, string inputtedDirection)
+        public void PlaceRobot(int x, int y, string inputtedDirection = "")
         {
             if(x == -1 || y == -1)
             {
                 return;
             }
+
+            //is there a valid direction value
+
+            //check if direction is present, if not no changes
 
             if (compass.CheckValidDirectionString(inputtedDirection))
             {
@@ -46,9 +50,15 @@ namespace robosim
 
                 isPlaced = true;
             }
+            else if((inputtedDirection.Equals("") || inputtedDirection.Equals(" ")) && IsPlaced())
+            {
+                int currentDirection = robot.GetDirectionIndex();
+
+                robot.SetNewPosition(x, y, currentDirection);
+            }
             else
             {
-                Console.WriteLine("Invalid Direction. Please input one of the following NORTH, WEST, EAST, SOUTH");
+                Console.WriteLine("Invalid Direction. Please input one of the following NORTH, WEST, EAST, SOUTH. Please ensure you've placed the robot.");
             }
         }
 
